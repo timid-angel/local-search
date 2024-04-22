@@ -1,16 +1,19 @@
 class Node:
-    def __init__(self, val, x=0, y=0):
+    def __init__(self, val, lat=0, long=0):
         self.val = val
-        self.x = x
-        self.y = y
+        self.lat = lat
+        self.long = long
         self.nbs = []
-    
-    # def __eq__(self, value: object) -> bool:
-    #     return self.val
 
 class Graph:
     def __init__(self):
         self.nodes = []
+    
+    def getDistance(node1: Node, node2: Node):
+        lat_diff = node1.lat - node2.lat
+        long_diff = node1.long - node2.long
+
+        return (lat_diff ** 2 + long_diff ** 2) ** 0.5
     
     def addNode(self, node: Node):
         self.nodes.append(node)
@@ -61,10 +64,6 @@ class Graph:
     def __str__(self):
         s = "\n"
         for n in self.nodes:
-            nodes = "[ "
-            for nb in n.nbs:
-                nodes += f"({nb[0].val}, {nb[1]}) "
-            nodes += "]"
-            s += f"{n.val} : {nodes}\n"
+            s += f"{n.val} : ({n.lat}, {n.long})\n"
 
         return s
