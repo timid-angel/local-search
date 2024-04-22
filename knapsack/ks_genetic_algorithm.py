@@ -64,5 +64,5 @@ def genetic_algorithm(bags: list, maxWeight: int, generation_limit: int, generat
         gen = next_gen
     
     gen.sort(key=lambda ans: fitness_function(bags, maxWeight, ans), reverse=True)
-
+    gen = list(map(lambda ans: (ans, fitness_function(bags, maxWeight, ans)), gen))
     return gen

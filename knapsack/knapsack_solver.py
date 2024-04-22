@@ -1,4 +1,5 @@
 from ks_genetic_algorithm import genetic_algorithm
+from ks_hill_climbing import hill_climbing
 from bag_item import BagItem
 
 
@@ -23,4 +24,8 @@ def solve_knapsack(algorithm: str, file_name: str):
         generation_limit = 20
         generation_size = 10
         ans = genetic_algorithm(bags, maxWeight, generation_limit, generation_size)
+        return ans[0]
+
+    if algorithm == "hc":
+        ans = hill_climbing(bags, maxWeight)
         return ans
