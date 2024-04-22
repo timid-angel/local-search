@@ -7,7 +7,7 @@ def heuristic(bags: list, solution: list, maxWeight: int):
             weight += bags[i].weight
             value += bags[i].value
     
-    return -1 if weight <= maxWeight else weight
+    return -1 if weight > maxWeight else value
 
 
 def generate_neighbors(solution: list):

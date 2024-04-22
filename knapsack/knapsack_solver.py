@@ -1,3 +1,4 @@
+from ks_simulated_annealing import simulated_annealing
 from ks_genetic_algorithm import genetic_algorithm
 from ks_hill_climbing import hill_climbing
 from bag_item import BagItem
@@ -28,4 +29,8 @@ def solve_knapsack(algorithm: str, file_name: str):
 
     if algorithm == "hc":
         ans = hill_climbing(bags, maxWeight)
+        return ans
+    
+    if algorithm == "sa":
+        ans = simulated_annealing(bags, maxWeight, 0.9, 1000, 0.00000001)
         return ans
