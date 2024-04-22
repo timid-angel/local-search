@@ -20,6 +20,8 @@ def solve_knapsack(algorithm: str, file_name: str):
             bags.append(bag_item)
 
         line = file.readline()
+    
+    file.close()
 
     if algorithm == "ga":
         generation_limit = 20
