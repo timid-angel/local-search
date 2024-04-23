@@ -1,6 +1,6 @@
 import argparse
 
-from tsp_solver import solve_tsp
+from tsp.tsp_solver import solve_tsp
 
 parser = argparse.ArgumentParser(description="Knapsack Problem")
 parser.add_argument("--algorithm", help="algorithm to run")

@@ -1,7 +1,7 @@
 import random
 import numpy as np
 
-from graph import Graph
+from tsp.graph import Graph
 
 def objective_fxn(solution: list):
     score = 0

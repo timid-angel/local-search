@@ -1,17 +1,39 @@
-from tsp_solver import solve_tsp, stringify_solution
+import time
 
-ga_ans, ga_val = solve_tsp("ga", "data.txt")
-hc_ans, hc_val = solve_tsp("hc", "data.txt")
-sa_ans, sa_val = solve_tsp("sa", "data.txt")
+from tsp.tsp_solver import solve_tsp
 
-print("Genetic Algorithm")
-print(stringify_solution(ga_ans))
-print(ga_val)
+def run_algorithms(file_name: str):
+    results = {
+        "Genetic Algorithm": [[], []],
+        "Hill Climbing": [[], []],
+        "Simulated Annealing": [[], []]
+    }
 
-print("\nHill-climbing")
-print(stringify_solution(hc_ans))
-print(hc_val)
+    for _ in range(10):
+        gst = time.time()
+        ga_ans, ga_val = solve_tsp("ga", file_name)
+        gen = time.time()
 
-print("\nSimulated Annealing")
-print(stringify_solution(sa_ans))
-print(sa_val)
+        hst = time.time()
+        hc_ans, hc_val = solve_tsp("hc", file_name)
+        hen = time.time()
+
+        sst = time.time()
+        sa_ans, sa_val = solve_tsp("sa", file_name)
+        sen = time.time()
+
+        results["Genetic Algorithm"][0].append(gen - gst)
+        results["Genetic Algorithm"][1].append(ga_val)
+
+        results["Hill Climbing"][0].append(hen - hst)
+        results["Hill Climbing"][1].append(hc_val)
+
+        results["Simulated Annealing"][0].append(sen - sst)
+        results["Simulated Annealing"][1].append(sa_val)
+    
+    return results
+
+
+tsp_8 = run_algorithms("data_8.txt")
+tsp_16 = run_algorithms("data_16.txt")
+tsp_20 = run_algorithms("data_20.txt")

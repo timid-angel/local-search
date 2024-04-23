@@ -1,7 +1,7 @@
-from ks_simulated_annealing import simulated_annealing
-from ks_genetic_algorithm import genetic_algorithm
-from ks_hill_climbing import hill_climbing
-from bag_item import BagItem
+from knapsack.ks_simulated_annealing import simulated_annealing
+from knapsack.ks_genetic_algorithm import genetic_algorithm
+from knapsack.ks_hill_climbing import hill_climbing
+from knapsack.bag_item import BagItem
 
 
 def solve_knapsack(algorithm: str, file_name: str):

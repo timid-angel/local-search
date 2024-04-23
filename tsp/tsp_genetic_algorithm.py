@@ -1,7 +1,7 @@
 import random
 import math
 
-from graph import Graph
+from tsp.graph import Graph
 
 
 def generate_solution(graph: Graph):

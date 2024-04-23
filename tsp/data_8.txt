@@ -1,0 +1,9 @@
+City    Latitude    Longitude
+Oradea    47.0465005    21.9189438
+Zerind    46.622511    21.517419
+Timisoara    45.759722    21.23
+Lugoj    45.68861    21.90306
+Mehadia    44.904114    22.364516
+Sibiu    45.792784    24.152068999999983
+Fagaras    45.8416403    24.9730954
+Bucharest    44.439663    26.096306

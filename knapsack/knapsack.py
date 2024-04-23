@@ -1,5 +1,5 @@
 import argparse
-from knapsack_solver import solve_knapsack
+from knapsack.knapsack_solver import solve_knapsack
 
 parser = argparse.ArgumentParser(description="Knapsack Problem")
 parser.add_argument("--algorithm", help="algorithm to run")

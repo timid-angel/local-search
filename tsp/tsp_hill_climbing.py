@@ -1,6 +1,6 @@
 import random
 
-from graph import Graph
+from tsp.graph import Graph
 
 def objective_fxn(solution: list):
     score = 0

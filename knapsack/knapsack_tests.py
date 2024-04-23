@@ -1,7 +1,8 @@
 import random
 import math
+import time
 
-from knapsack_solver import solve_knapsack
+from knapsack.knapsack_solver import solve_knapsack
 
 def generate_name(char_count: int):
     name = ""
@@ -25,33 +26,41 @@ def generate_knapsack_list(itemCount: int):
         file.writelines(f"{name},{weight},{value}\n")
 
 
-generate_knapsack_list(10)
-generate_knapsack_list(15)
-generate_knapsack_list(20)
+def run_algorithms(item_count: int):
+    results = {
+        "Genetic Algorithm": [[], []],
+        "Hill Climbing": [[], []],
+        "Simulated Annealing": [[], []]
+    }
 
-ga_ans10 = solve_knapsack("ga", "item_list_10.txt")
-ga_ans15 = solve_knapsack("ga", "item_list_15.txt")
-ga_ans20 = solve_knapsack("ga", "item_list_20.txt")
+    for _ in range(10):
+        generate_knapsack_list(item_count)
 
-hc_ans10 = solve_knapsack("hc", "item_list_10.txt")
-hc_ans15 = solve_knapsack("hc", "item_list_15.txt")
-hc_ans20 = solve_knapsack("hc", "item_list_20.txt")
+        gst = time.time()
+        ga_ans, ga_val = solve_knapsack("ga", f"item_list_{item_count}.txt")
+        gen = time.time()
 
-sa_ans10 = solve_knapsack("sa", "item_list_10.txt")
-sa_ans15 = solve_knapsack("sa", "item_list_15.txt")
-sa_ans20 = solve_knapsack("sa", "item_list_20.txt")
+        hst = time.time()
+        hc_ans, hc_val = solve_knapsack("hc", f"item_list_{item_count}.txt")
+        hen = time.time()
 
-print("Genetic Algorithm")
-print("10 items: ", ga_ans10[1])
-print("15 items: ", ga_ans15[1])
-print("20 items: ", ga_ans20[1])
+        sst = time.time()
+        sa_ans, sa_val = solve_knapsack("sa", f"item_list_{item_count}.txt")
+        sen = time.time()
 
-print("\nHill-climbing")
-print("10 items: ", hc_ans10[1])
-print("15 items: ", hc_ans15[1])
-print("20 items: ", hc_ans20[1])
+        results["Genetic Algorithm"][0].append(gen - gst)
+        results["Genetic Algorithm"][1].append(ga_val)
 
-print("\nSimulated Annealing")
-print("10 items: ", sa_ans10[1])
-print("15 items: ", sa_ans15[1])
-print("20 items: ", sa_ans20[1])
+        results["Hill Climbing"][0].append(hen - hst)
+        results["Hill Climbing"][1].append(hc_val)
+
+        results["Simulated Annealing"][0].append(sen - sst)
+        results["Simulated Annealing"][1].append(sa_val)
+
+
+    return results
+
+
+knapsack_10 = run_algorithms(10)
+knapsack_15 = run_algorithms(15)
+knapsack_20 = run_algorithms(20)

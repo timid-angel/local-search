@@ -1,8 +1,8 @@
-from graph import Graph, Node
+from tsp.graph import Graph, Node
 
-from tsp_genetic_algorithm import genetic_algorithm
-from tsp_hill_climbing import hill_climbing
-from tsp_simulated_annealing import simulated_annealing
+from tsp.tsp_genetic_algorithm import genetic_algorithm
+from tsp.tsp_hill_climbing import hill_climbing
+from tsp.tsp_simulated_annealing import simulated_annealing
 
 def stringify_solution(solution):
     s = ""
