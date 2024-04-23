@@ -1,6 +1,8 @@
 from graph import Graph, Node
-from tsp_genetic_algorithm import genetic_algorithm
 
+from tsp_genetic_algorithm import genetic_algorithm
+from tsp_hill_climbing import hill_climbing
+from tsp_simulated_annealing import simulated_annealing
 
 def stringify_solution(solution):
     s = ""
@@ -34,6 +36,11 @@ def solve_tsp(algorithm: str, file_name: str = "data.txt"):
         generation_size = 10
         solution, weight = genetic_algorithm(graph, generation_limit, generation_size)
     
+    if algorithm == "hc":
+        solution, weight = hill_climbing(graph)
+    
+    if algorithm == "sa":
+        solution, weight = simulated_annealing(graph, 0.9, 1000, 0.00000001)
 
     return solution, weight
         

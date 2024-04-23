@@ -1,4 +1,5 @@
 import random
+import numpy as np
 
 from graph import Graph
 
@@ -38,17 +39,26 @@ def generate_solution(graph: Graph):
     return ans
 
 
-def hill_climbing(graph: Graph):
-    current_solution = generate_solution(graph)
+def simulated_annealing(graph: Graph, cooling_factor: float, initial_T: float, min_T: float):
+    current_solution = best_solution = generate_solution(graph)
+    T = initial_T
 
     while True:
-        neighbors = generate_neighbors(current_solution)
-        best = min(neighbors, key=lambda s: objective_fxn(s))
+        T *= cooling_factor
+        if T < min_T:
+            break
 
-        # stop if a local minima has been found
-        if objective_fxn(best) >= objective_fxn(current_solution):
-            break 
+        neighbors = generate_neighbors(current_solution)
+        next_solution = random.choice(neighbors)
+        delta_E = objective_fxn(next_solution) - objective_fxn(current_solution)
+
+        if objective_fxn(next_solution) < objective_fxn(best_solution):
+            best_solution = next_solution
+
+        if delta_E < 0:
+            current_solution = next_solution
         
-        current_solution = best
+        elif random.random() < np.exp(-delta_E / T):
+            current_solution = next_solution
     
     return (current_solution, objective_fxn(current_solution))

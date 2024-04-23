@@ -86,6 +86,6 @@ def genetic_algorithm(graph: Graph, generation_limit: int, generation_size: int)
         
         gen = nxt_gen
 
-    solution = max(gen, key=lambda s: fitness_function(s))
+    solution = max(gen, key=lambda s: -fitness_function(s))
 
     return solution, fitness_function(solution)
