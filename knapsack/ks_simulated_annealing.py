@@ -1,7 +1,7 @@
 import random
 import numpy as np
 
-def heuristic(bags: list, solution: list, maxWeight: int):
+def objective_fxn(bags: list, solution: list, maxWeight: int):
     weight = value = 0
     for i in range(len(bags)):
         if solution[i] == 1:
@@ -40,9 +40,9 @@ def simulated_annealing(bags: list, maxWeight: int, cooling_factor: float, initi
 
         neighbors = generate_neighbors(current_solution)
         next_solution = random.choice(neighbors)
-        delta_E = heuristic(bags, next_solution, maxWeight) - heuristic(bags, current_solution, maxWeight)
+        delta_E = objective_fxn(bags, next_solution, maxWeight) - objective_fxn(bags, current_solution, maxWeight)
 
-        if heuristic(bags, next_solution, maxWeight) > heuristic(bags, best_solution, maxWeight):
+        if objective_fxn(bags, next_solution, maxWeight) > objective_fxn(bags, best_solution, maxWeight):
             best_solution = next_solution
 
         if delta_E > 0:
@@ -51,4 +51,4 @@ def simulated_annealing(bags: list, maxWeight: int, cooling_factor: float, initi
         elif random.random() < np.exp(delta_E / T):
             current_solution = next_solution
     
-    return (current_solution, heuristic(bags, current_solution, maxWeight))
+    return (current_solution, objective_fxn(bags, current_solution, maxWeight))

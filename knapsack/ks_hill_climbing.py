@@ -1,6 +1,6 @@
 import random
 
-def heuristic(bags: list, solution: list, maxWeight: int):
+def objective_fxn(bags: list, solution: list, maxWeight: int):
     weight = value = 0
     for i in range(len(bags)):
         if solution[i] == 1:
@@ -33,12 +33,12 @@ def hill_climbing(bags: list, maxWeight: int):
 
     while True:
         neighbors = generate_neighbors(current_solution)
-        best = max(neighbors, key=lambda s: heuristic(bags, s, maxWeight))
+        best = max(neighbors, key=lambda s: objective_fxn(bags, s, maxWeight))
 
         # stop if a local maxima has been found
-        if heuristic(bags, best, maxWeight) <= heuristic(bags, current_solution, maxWeight):
+        if objective_fxn(bags, best, maxWeight) <= objective_fxn(bags, current_solution, maxWeight):
             break 
         
         current_solution = best
     
-    return (current_solution, heuristic(bags, current_solution, maxWeight))
+    return (current_solution, objective_fxn(bags, current_solution, maxWeight))
