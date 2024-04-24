@@ -1,3 +1,5 @@
+import matplotlib.pyplot as plt
+
 class Node:
     def __init__(self, val, lat=0, long=0):
         self.val = val
@@ -60,6 +62,19 @@ class Graph:
         for j in range(len(found.nbs)):
             if found.nbs[j] == (destination, cost):
                 return found.nbs.pop(j)
+            
+    def printGraph(self):
+        plt.figure(figsize=(10, 6))
+
+        for node in self.nodes:
+            y, x = node.long, node.lat
+            plt.scatter(x, y, edgecolors='black', s=100)
+            plt.text(x, y, node.val, fontsize=10)
+
+        plt.title(f"Graph of {len(self.nodes)} Cities - Edges Omitted for Clarity")
+        plt.grid(True)
+        plt.show()
+
 
     def __str__(self):
         s = "\n"

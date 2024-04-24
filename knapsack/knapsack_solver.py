@@ -24,7 +24,7 @@ def solve_knapsack(algorithm: str, file_name: str):
     file.close()
 
     if algorithm == "ga":
-        generation_limit = 20
+        generation_limit = 10
         generation_size = 10
         ans = genetic_algorithm(bags, maxWeight, generation_limit, generation_size)
         return ans[0]
@@ -34,5 +34,5 @@ def solve_knapsack(algorithm: str, file_name: str):
         return ans
     
     if algorithm == "sa":
-        ans = simulated_annealing(bags, maxWeight, 0.9, 1000, 0.00000001)
+        ans = simulated_annealing(bags, maxWeight, 0.9, 1000, 0.000001)
         return ans

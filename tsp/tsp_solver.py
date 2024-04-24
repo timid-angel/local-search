@@ -32,7 +32,7 @@ def solve_tsp(algorithm: str, file_name: str = "data.txt"):
     solution, weight = None, None
 
     if algorithm == "ga":
-        generation_limit = 20
+        generation_limit = 10
         generation_size = 10
         solution, weight = genetic_algorithm(graph, generation_limit, generation_size)
     
@@ -40,7 +40,7 @@ def solve_tsp(algorithm: str, file_name: str = "data.txt"):
         solution, weight = hill_climbing(graph)
     
     if algorithm == "sa":
-        solution, weight = simulated_annealing(graph, 0.9, 1000, 0.00000001)
+        solution, weight = simulated_annealing(graph, 0.9, 1000, 0.000001)
 
-    return solution, weight
+    return graph, solution, weight
         
