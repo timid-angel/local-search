@@ -14,7 +14,7 @@ def generate_name(char_count: int):
 
 
 def generate_knapsack_list(itemCount: int):
-    file = open(f"item_list_{itemCount}.txt", "+w")
+    file = open(f"./knapsack/item_list_{itemCount}.txt", "+w")
     maxWeight = math.floor((random.random() * 50)) + 30
     file.writelines(str(maxWeight) + "\n")
     file.writelines("item,weight,value,n_items\n")

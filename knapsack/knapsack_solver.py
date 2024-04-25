@@ -5,7 +5,7 @@ from knapsack.bag_item import BagItem
 
 
 def solve_knapsack(algorithm: str, file_name: str):
-    file = open(file_name)
+    file = open(f"./knapsack/{file_name}")
     maxWeight = int(file.readline().strip())
     bags = []
 
